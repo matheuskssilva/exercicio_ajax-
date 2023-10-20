@@ -9,20 +9,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     const endPoint = `https://api.github.com/users/ogiansouza`
-    console.log(endPoint)
-    fetch(endPoint)
-        .then(function(resposta) {
-            return resposta.json()
+    try {
+        fetch(endPoint)
+            .then(function(resposta) {
+                return resposta.json()
 
-        })
-        .then(function(json) {
-            public_repos.innerText = json.public_repos
-            following.innerText = json.following
-            followers.innerText = json.followers
-            nome.innerText = json.name
-            nomeUsuario.innerText = json.login
-            avatar_url.src = json.avatar_url
-            url.href = json.html_url
-        })
+            })
+            .then(function(json) {
+                public_repos.innerText = json.public_repos
+                following.innerText = json.following
+                followers.innerText = json.followers
+                nome.innerText = json.name
+                nomeUsuario.innerText = json.login
+                avatar_url.src = json.avatar_url
+                url.href = json.html_url
+            })
+    } catch (error) {
+        alert('Ocorreu um erro ao buscar o perfil do Github')
+    }
 
 })
